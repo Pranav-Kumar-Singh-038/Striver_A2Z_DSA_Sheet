@@ -6,19 +6,19 @@
 //Time complexity: O(n)
 //Space complexity: O(1)
 
-class Solution {
-public:
-    int missingNumber(std::vector<int>& nums) {
-       int x=0;
-       for(int l:nums){
-           x^=l;
-       }
-       for(int i=0;i<=nums.size();i++){
-           x^=i;
-       }
-       return x;
-    }
-};
+// class Solution {
+// public:
+//     int missingNumber(std::vector<int>& nums) {
+//        int x=0;
+//        for(int l:nums){
+//            x^=l;
+//        }
+//        for(int i=0;i<=nums.size();i++){
+//            x^=i;
+//        }
+//        return x;
+//     }
+// };
 //Mine
 //Time complexity: O(n)
 //Space complexity: O(1)
