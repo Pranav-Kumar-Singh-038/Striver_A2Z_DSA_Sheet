@@ -28,9 +28,6 @@ Time Complexity : O(N*M)
 Space Complexity : O(1)
 */
 
-
-
-
 // class Solution {
 // public:
 //     void setZeroes(std::vector<std::vector<int>>& matrix) {
@@ -75,62 +72,62 @@ Space Complexity : O(1)
 // };
 
 /*
-My : I iterate through the loop to store the indexes with 0 in a map and 
+My : I iterate through the loop to store the indexes with 0 in a map and
 then I update the matrix according the values in map, then i print it
 TC : O(m*n) or O(n^2)
 SC : O(m+n) or O(n-+)
 */
-class Solution 
+class Solution
 {
- public:
-    void setZeroes(std::vector<std::vector<int>>& matrix) 
+public:
+  void setZeroes(std::vector<std::vector<int>> &matrix)
+  {
+    std::map<char, std::set<int>> m;
+    for (int i = 0; i < matrix.size(); i++)
     {
-     std::map<char,std::set<int>> m;
-     for(int i=0;i<matrix.size();i++)
+      for (int j = 0; j < matrix[i].size(); j++)
       {
-       for(int j=0;j<matrix[i].size();j++)
+        if (matrix[i][j] == 0)
         {
-        if(matrix[i][j]==0)
-         {
           m['i'].insert(i);
           m['j'].insert(j);
-         } 
         }
       }
-    for(int i=0;i<matrix.size();i++)
+    }
+    for (int i = 0; i < matrix.size(); i++)
     {
-    for(int k=0;k<matrix[i].size();k++)
-    {
-      if(m['i'].find(i) != m['i'].end() || m['j'].find(k) != m['j'].end())
+      for (int k = 0; k < matrix[i].size(); k++)
       {
-       matrix[i][k]=0;
+        if (m['i'].find(i) != m['i'].end() || m['j'].find(k) != m['j'].end())
+        {
+          matrix[i][k] = 0;
+        }
       }
     }
-  }
-  for(auto row:matrix)
-  {
-    for(auto column:row)
+    for (auto row : matrix)
     {
-        std::cout<<column<<" ";
+      for (auto column : row)
+      {
+        std::cout << column << " ";
+      }
+      std::cout << "\n";
     }
-    std::cout<<"\n";
   }
-    }
 };
 
 int main()
 {
-  int m,n;
-  std::cin>>m>>n;
+  int m, n;
+  std::cin >> m >> n;
   std::vector<std::vector<int>> vec;
-  while(m--)
+  while (m--)
   {
     std::vector<int> nums;
-    for(int k=0;k<n;k++)
+    for (int k = 0; k < n; k++)
     {
-        int x;
-        std::cin>>x;
-        nums.push_back(x);
+      int x;
+      std::cin >> x;
+      nums.push_back(x);
     }
     vec.push_back(nums);
   }
