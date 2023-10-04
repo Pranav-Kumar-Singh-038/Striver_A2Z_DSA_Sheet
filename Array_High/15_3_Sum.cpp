@@ -48,46 +48,46 @@ public:
 // First Approach-:
 // TC : O(n^2) : 1290ms
 // SC : O(n) : 193.83mb
-class Solution
-{
-public:
-  std::vector<std::vector<int>> threeSum(std::vector<int> &nums)
-  {
-    std::vector<std::vector<int>> vec;
-    std::set<std::vector<int>> s;
-    std::sort(nums.begin(), nums.end());
-    for (int i = 0; i < nums.size(); i++)
-    {
-      int target = -nums[i];
-      int left = i + 1;
-      int right = nums.size() - 1;
-      while (left < right)
-      {
-        int sum = nums[left] + nums[right];
-        if (target == sum)
-        {
-          std::vector<int> temp = {nums[i], nums[left], nums[right]};
-          sort(temp.begin(),temp.end());
-          s.insert(temp);
-          left++;
-          right--;
-        }
-        else if(sum<target)
-        {
-          left++;
-        }
-        else{
-          right--;
-        }
-      }
-    }
-    for(auto it:s)
-    {
-      vec.push_back(it);
-    }
-    return vec;
-  }
-};
+// class Solution
+// {
+// public:
+//   std::vector<std::vector<int>> threeSum(std::vector<int> &nums)
+//   {
+//     std::vector<std::vector<int>> vec;
+//     std::set<std::vector<int>> s;
+//     std::sort(nums.begin(), nums.end());
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//       int target = -nums[i];
+//       int left = i + 1;
+//       int right = nums.size() - 1;
+//       while (left < right)
+//       {
+//         int sum = nums[left] + nums[right];
+//         if (target == sum)
+//         {
+//           std::vector<int> temp = {nums[i], nums[left], nums[right]};
+//           sort(temp.begin(),temp.end());
+//           s.insert(temp);
+//           left++;
+//           right--;
+//         }
+//         else if(sum<target)
+//         {
+//           left++;
+//         }
+//         else{
+//           right--;
+//         }
+//       }
+//     }
+//     for(auto it:s)
+//     {
+//       vec.push_back(it);
+//     }
+//     return vec;
+//   }
+// };
 
 
 int main()
