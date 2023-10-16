@@ -1,7 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-//My approach;
+
+// My approach;
+//TC: O(n * (max - min))
+//SC: O(max - min)
+// Gives runtime error for accessing non defined memory(buffer overflow)
 // class Solution
 // {
 // public:
@@ -63,6 +67,9 @@
 //     }
 // };
 
+
+//TC: O(nlogn) : 26ms
+//SC: O(n): 19.05mb
 class Solution {
 public:
     std::vector<std::vector<int>> merge(std::vector<std::vector<int>>& intervals) {
@@ -91,26 +98,6 @@ public:
         return merged;
     }
 };
-
-// class Solution {
-// public:
-//     std::vector<std::vector<int>> merge(std::vector<std::vector<int>>& intervals) {
-//         std::sort(intervals.begin(), intervals.end());
-//         std::vector<std::vector<int>> merged;
-        
-//         for (const auto& interval : intervals) {
-//             if (merged.empty() || interval[0] > merged.back()[1]) {
-//                 // If no overlap, add the interval to the result.
-//                 merged.push_back(interval);
-//             } else {
-//                 // If there is an overlap, merge the current interval with the previous one.
-//                 merged.back()[1] = std::max(merged.back()[1], interval[1]);
-//             }
-//         }
-        
-//         return merged;
-//     }
-// };
 
 int main()
 {
