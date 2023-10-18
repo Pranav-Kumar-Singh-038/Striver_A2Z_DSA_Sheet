@@ -29,7 +29,7 @@ public:
                 count1--;
                 count2--;
             }
-        }
+        }////
       int countfin2=0;
       int countfin1=0;
       for(auto it:nums)
