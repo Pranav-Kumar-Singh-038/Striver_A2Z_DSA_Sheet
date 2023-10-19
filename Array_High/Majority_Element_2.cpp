@@ -2,7 +2,7 @@
 using namespace std;
 
 //Optimal
-//TC O(n)
+//TC O(n), yeah nothing much
 //SC O(1)
 class Solution {
 public:
