@@ -10,40 +10,58 @@ public:
         int l = 0;
         int r = nums.size() - 1;
         int mid = l + (r - l) / 2;
-        int min = INT_MAX;
-        int max = -1;
-        while (l <= r && nums.size()!=0)
+        int index;
+        bool ans = false;
+        while (l <= r)
         {
             if (nums[mid] == target)
             {
-                if (min > mid)
-                {
-                    min = mid;
-                }
-                if (max < mid)
-                {
-                    max = mid;
-                }
-                nums[mid]=target-1;
+                index = mid;
+                ans = true;
+                break;
             }
-            else if (nums[mid] < target)
-            {
-                l = mid + 1;
-                mid = l + (r - l) / 2;
-            }
-            else
+            else if (nums[mid] > target)
             {
                 r = mid - 1;
                 mid = l + (r - l) / 2;
             }
+            else
+            {
+                l = mid + 1;
+                mid = l + (r - l) / 2;
+            }
         }
-        if (min == INT_MAX)
+        if (!ans)
+        {
+            index = -1;
+        }
+        int low = index;
+        int high = index;
+        if (index == -1)
         {
             return {-1, -1};
         }
         else
         {
-            return {min, max};
+            while (nums[low] == target && low >= 0)
+            {
+                low--;
+            }
+            low++;
+            if (low < 0)
+            {
+                low = 0;
+            }
+            while (nums[high] == target && high < nums.size())
+            {
+                high++;
+            }
+            high--;
+            if (high > nums.size() - 1)
+            {
+                high = nums.size() - 1;
+            }
+            return {low, high};
         }
     }
 };
