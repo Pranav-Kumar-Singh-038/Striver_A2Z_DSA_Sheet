@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <limits.h>
-
+// My solution
+// TC: O(n)
+// SC: O(1)
 class Solution
 {
 public:
@@ -35,31 +37,38 @@ public:
         {
             index = -1;
         }
-        int low = index;
-        int high = index;
+
         if (index == -1)
         {
             return {-1, -1};
         }
         else
         {
-            while (nums[low] == target && low >= 0)
+            int low = index;
+            int high = index;
+            while (nums[low] == target && low != 0)
             {
                 low--;
+                if (low == 0 && nums[0] == target)
+                {
+                    break;
+                }
             }
-            low++;
-            if (low < 0)
+            if (nums[low] != target)
             {
-                low = 0;
+                low++;
             }
-            while (nums[high] == target && high < nums.size())
+            while (nums[high] == target && high != nums.size() - 1)
             {
                 high++;
+                if (high == nums.size() - 1 && nums[nums.size() - 1] == target)
+                {
+                    break;
+                }
             }
-            high--;
-            if (high > nums.size() - 1)
+            if (nums[high] != target)
             {
-                high = nums.size() - 1;
+                high--;
             }
             return {low, high};
         }
