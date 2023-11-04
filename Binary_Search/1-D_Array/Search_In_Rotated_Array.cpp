@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
-
 // Optimal
 //  TC: O(logn)
 // SC: O(1)
@@ -41,7 +39,7 @@
 };
 
 // Second Approach
-// TC: O(n) if array is sorted 
+// TC: O(n) if array is sorted
 // Runtime: 3ms Beats 64%
 // SC:O(1)
 // Memory: 11.62 mb beats 12%
@@ -121,7 +119,7 @@
 //         {
 //           return ans1;
 //         }
-      
+
 //     }
 //   }
 // };
