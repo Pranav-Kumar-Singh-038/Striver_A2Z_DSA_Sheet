@@ -4,32 +4,29 @@
 // Optimal
 //  TC: O(logn)
 // SC: O(1)
- class Solution {
- public:
-     int search(std::vector<int>& nums, int target) {
-         int left = 0;
-         int right = nums.size() - 1;
+class Solution {
+public:
+    int search(std::vector<int>& nums, int target) {
+        int low = 0, high = nums.size() - 1;
 
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
+        while (low <= high) {
+            int mid = (low + high) / 2;
 
             if (nums[mid] == target) {
                 return mid;
             }
 
-            if (nums[left] <= nums[mid]) {
-                // Left subarray is sorted
-                if (nums[left] <= target && target < nums[mid]) {
-                    right = mid - 1;
+            if (nums[low] <= nums[mid]) {
+                if (nums[low] <= target && target < nums[mid]) {
+                    high = mid - 1;
                 } else {
-                    left = mid + 1;
+                    low = mid + 1;
                 }
             } else {
-                // Right subarray is sorted
-                if (nums[mid] < target && target <= nums[right]) {
-                    left = mid + 1;
+                if (nums[mid] < target && target <= nums[high]) {
+                    low = mid + 1;
                 } else {
-                    right = mid - 1;
+                    high = mid - 1;
                 }
             }
         }
@@ -44,29 +41,29 @@
 // SC:O(1)
 // Memory: 11.62 mb beats 12%
 
-// int binarySearch(std::vector<int> nums, int target, int start,int end)
+// int binarySearch(std::vector<int> nums, int target, int start, int end)
 // {
-//   int l = start;
-//   int r = end;
-//   int mid = l + (r - l) / 2;
-//   while (l <= r)
-//   {
-//     if (nums[mid] == target)
+//     int l = start;
+//     int r = end;
+//     int mid = l + (r - l) / 2;
+//     while (l <= r)
 //     {
-//       return mid;
+//         if (nums[mid] == target)
+//         {
+//             return mid;
+//         }
+//         else if (nums[mid] > target)
+//         {
+//             r = mid - 1;
+//             mid = l + (r - l) / 2;
+//         }
+//         else
+//         {
+//             l = mid + 1;
+//             mid = l + (r - l) / 2;
+//         }
 //     }
-//     else if (nums[mid] > target)
-//     {
-//       r = mid - 1;
-//       mid = l + (r - l) / 2;
-//     }
-//     else
-//     {
-//       l = mid + 1;
-//       mid = l + (r - l) / 2;
-//     }
-//   }
-//   return -1;
+//     return -1;
 // }
 
 // class Solution
@@ -146,18 +143,18 @@
 
 int main()
 {
-  int n;
-  std::cin >> n;
-  std::vector<int> vec;
-  while (n--)
-  {
-    int x;
-    std::cin >> x;
-    vec.push_back(x);
-  }
-  int target;
-  std::cin >> target;
-  Solution sol;
-  int ans = sol.search(vec, target);
-  std::cout << ans;
+    int n;
+    std::cin >> n;
+    std::vector<int> vec;
+    while (n--)
+    {
+        int x;
+        std::cin >> x;
+        vec.push_back(x);
+    }
+    int target;
+    std::cin >> target;
+    Solution sol;
+    int ans = sol.search(vec, target);
+    std::cout << ans;
 }
