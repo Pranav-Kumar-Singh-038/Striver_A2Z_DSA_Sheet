@@ -15,6 +15,12 @@ public:
             ans=true;
             break;
           }
+          if(nums[mid]==nums[l] && nums[mid]==nums[r])
+          {
+            l++;
+            r--;
+            continue;
+          }
           else if(nums[l]<=nums[mid])
           {
             if(nums[l]<=target && nums[mid]>target)
@@ -37,7 +43,7 @@ public:
                 r=mid-1;
             }
           }
-          std::cout<<mid<<std::endl;
+        //   std::cout<<mid<<std::endl;
         }
         return ans;
     }
