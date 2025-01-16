@@ -1,1 +1,0 @@
-{"name":"Local: temp","url":"e:\\Programming\\Coding\\Striver_A2Z_DSA_Sheet\\Array_High\\temp.cpp","tests":[{"id":1695806641784,"input":"6\n-1 0 1 2 -1 -4","output":"-1 -1 2 \n-1 0 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Programming\\Coding\\Striver_A2Z_DSA_Sheet\\Array_High\\temp.cpp","group":"local","local":true}
