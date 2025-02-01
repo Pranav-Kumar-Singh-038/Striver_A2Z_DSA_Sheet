@@ -1,21 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node
+class DLLNode
 {
 public:
- Node* prev;
+ DLLNode* prev;
  int data;
- Node* next;
+ DLLNode* next;
 
- Node()
+ DLLNode()
  {
     prev=NULL;
     data=0;
     next=NULL;
  }
 
- Node(int data)
+ DLLNode(int data)
  {
     this->prev=NULL;
     this->data=data;
@@ -26,9 +26,9 @@ public:
 class Solution
 {
 public:
- void printDLL(Node* head)
+ void printDLL(DLLNode* head)
  {
-    Node* current=head;
+    DLLNode* current=head;
     while(current!=NULL)
     {
         cout<<current->data<<" ";
@@ -36,17 +36,17 @@ public:
     }
  }
 
- Node* constructDLL(vector<int> vec)
+ DLLNode* constructDLL(vector<int> vec)
  {
     if(vec.empty())
     {
         return NULL;
     }
-    Node* head=new Node(vec[0]);
-    Node* current=head;
+    DLLNode* head=new DLLNode(vec[0]);
+    DLLNode* current=head;
     for(int i=1;i<vec.size();i++)
     {
-        Node* newNode=new Node(vec[i]);
+        DLLNode* newNode=new DLLNode(vec[i]);
         current->next=newNode;
         newNode->prev=current;
         current=newNode;
@@ -54,9 +54,9 @@ public:
     return head;
  }
 
-Node *addNode(Node *head, int pos, int data) {
-    Node* newNode = new Node(data);
-    Node* current = head;
+DLLNode *addNode(DLLNode *head, int pos, int data) {
+    DLLNode* newNode = new DLLNode(data);
+    DLLNode* current = head;
     int index = 0;
 
     while (index < pos) 
@@ -65,7 +65,7 @@ Node *addNode(Node *head, int pos, int data) {
         index++;
     }
 
-    Node* upcoming = current->next;
+    DLLNode* upcoming = current->next;
     newNode->next = upcoming;
     newNode->prev = current;
     current->next = newNode;
@@ -93,8 +93,8 @@ int main()
  }
  
  Solution sol;
- Node* head=sol.constructDLL(vec);
- Node* newHead=sol.addNode(head,pos, data);
+ DLLNode* head=sol.constructDLL(vec);
+ DLLNode* newHead=sol.addNode(head,pos, data);
 sol.printDLL(newHead);
 
 
