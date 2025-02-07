@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class ListNode
+class Node
 {
 public:
    int data;
-   ListNode *next;
+   Node *next;
 
-   ListNode()
+   Node()
    {
       data = 0;
       next = NULL;
    }
 
-   ListNode(int data)
+   Node(int data)
    {
       this->data = data;
       this->next = NULL;
@@ -23,9 +23,9 @@ public:
 class Solution
 {
 public:
-   ListNode *middleNode(ListNode *head)
+   Node *middleNode(Node *head)
    {
-      ListNode *current = head;
+      Node *current = head;
       int length = 0;
       int middleNode;
       while (current != NULL)
@@ -43,9 +43,9 @@ public:
       return current;
    }
 
-   ListNode *middleNodeOptimal(ListNode *head)
+   Node *middleNodeOptimal(Node *head)
    {
-      ListNode *slow = head, *fast = head;
+      Node *slow = head, *fast = head;
       while (fast && fast->next)
       {
          slow = slow->next;
@@ -54,31 +54,31 @@ public:
       return slow;
    }
 
-   ListNode *constructLL(vector<int> vec)
+   Node *constructLL(vector<int> vec)
    {
       if (vec.empty())
       {
          return NULL;
       }
 
-      ListNode *head = new ListNode(vec[0]);
-      ListNode *current = head;
+      Node *head = new Node(vec[0]);
+      Node *current = head;
       for (int i = 1; i < vec.size(); i++)
       {
-         ListNode *newNode = new ListNode(vec[i]);
+         Node *newNode = new Node(vec[i]);
          current->next = newNode;
          current = current->next;
       }
       return head;
    }
 
-   void printLL(ListNode *head)
+   void printLL(Node *head)
    {
       if (head == NULL)
       {
          return;
       }
-      ListNode *current = head;
+      Node *current = head;
       while (current != NULL)
       {
          cout << current->data << " ";
@@ -100,7 +100,7 @@ int main()
    }
 
    Solution sol;
-   ListNode *head = sol.constructLL(vec);
-   ListNode *middleNode = sol.middleNode(head);
+   Node *head = sol.constructLL(vec);
+   Node *middleNode = sol.middleNode(head);
    sol.printLL(middleNode);
 }

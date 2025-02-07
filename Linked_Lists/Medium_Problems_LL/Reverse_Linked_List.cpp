@@ -1,24 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class ListNode
+class Node
 {
 public:
-    ListNode *next;
+    Node *next;
     int data;
 
-    ListNode()
+    Node()
     {
         data = 0;
         next = NULL;
     }
 
-    ListNode(int data)
+    Node(int data)
     {
         this->data = data;
         this->next = NULL;
     }
-    ListNode(int data, ListNode *next)
+    Node(int data, Node *next)
     {
         this->data = data;
         this->next = next;
@@ -28,18 +28,18 @@ public:
 class Solution
 {
 public:
-    ListNode *reverseList(ListNode *head) // Iterative
+    Node *reverseList(Node *head) // Iterative
     // TC: O(n) SC: O(1)
     {
         if (head == NULL)
         {
             return head;
         }
-        ListNode *current = head;
-        ListNode *prev = NULL;
+        Node *current = head;
+        Node *prev = NULL;
         while (current->next != NULL)
         {
-            ListNode *nextNode = current->next;
+            Node *nextNode = current->next;
             current->next = prev;
             prev = current;
             current = nextNode;
@@ -48,7 +48,7 @@ public:
         return current;
     }
 
-    ListNode *reverseList2(ListNode *head,  ListNode *prev = NULL) // Recursive
+    Node *reverseList2(Node *head,  Node *prev = NULL) // Recursive
     // TC: O(n) SC: O(n) (recursive call stack)
     {
         if (head == NULL)
@@ -56,19 +56,19 @@ public:
            return prev;
         }
 
-        ListNode *nextNode = head->next; 
+        Node *nextNode = head->next; 
         head->next = prev;
-        ListNode* ans=reverseList2( nextNode, head);
+        Node* ans=reverseList2( nextNode, head);
         return ans;
     }
 
-    void printLL(ListNode *head)
+    void printLL(Node *head)
     {
         if (head == NULL)
         {
             return;
         }
-        ListNode *current = head;
+        Node *current = head;
         while (current != NULL)
         {
             cout << current->data << " ";
@@ -76,18 +76,18 @@ public:
         }
     }
 
-    ListNode *constructLL(vector<int> vec)
+    Node *constructLL(vector<int> vec)
     {
         if (vec.empty())
         {
             return NULL;
         }
-        ListNode *head = new ListNode(vec[0]);
-        ListNode *current = head;
+        Node *head = new Node(vec[0]);
+        Node *current = head;
 
         for (int i = 1; i < vec.size(); i++)
         {
-            ListNode *newNode = new ListNode(vec[i]);
+            Node *newNode = new Node(vec[i]);
             current->next = newNode;
             current = current->next;
         }
@@ -108,7 +108,7 @@ int main()
     }
 
     Solution sol;
-    ListNode *head = sol.constructLL(vec);
-    ListNode *newHead = sol.reverseList2(head);
+    Node *head = sol.constructLL(vec);
+    Node *newHead = sol.reverseList2(head);
     sol.printLL(newHead);
 }

@@ -1,19 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class ListNode
+class Node
 {
 public:
     int data;
-    ListNode *next;
+    Node *next;
 
-    ListNode()
+    Node()
     {
         data = 0;
         next = NULL;
     }
 
-    ListNode(int data)
+    Node(int data)
     {
         this->data = data;
         this->next = NULL;
@@ -23,11 +23,11 @@ public:
 class Solution
 {
 public:
-    bool hasCycle2(ListNode *head) // using Unordered map
+    bool hasCycle2(Node *head) // using Unordered map
     {
         // TC: O(n), SC: O(n)
-        ListNode *current = head;
-        unordered_map<ListNode *, bool> myMap;
+        Node *current = head;
+        unordered_map<Node *, bool> myMap;
         while (current != NULL && myMap[current] != true)
         {
             myMap[current] = true;
@@ -40,11 +40,11 @@ public:
         return true;
     }
 
-    bool hasCycle(ListNode *head) // using tortoise and hare (floyd's algorithm)
+    bool hasCycle(Node *head) // using tortoise and hare (floyd's algorithm)
     {
         // TC: O(n), SC: O(1)
-        ListNode *tortoise = head;
-        ListNode *hare = head;
+        Node *tortoise = head;
+        Node *hare = head;
         if(head==NULL || head->next==NULL)
         {
             return false;
@@ -62,41 +62,41 @@ public:
         return false;
     }
 
-    ListNode *constructLL(vector<int> vec, int pos)
+    Node *constructLL(vector<int> vec, int pos)
     {
         if (vec.empty())
         {
             return NULL;
         }
 
-        ListNode *head = new ListNode(vec[0]);
-        ListNode *current = head;
+        Node *head = new Node(vec[0]);
+        Node *current = head;
         for (int i = 1; i < vec.size(); i++)
         {
-            ListNode *newNode = new ListNode(vec[i]);
+            Node *newNode = new Node(vec[i]);
             current->next = newNode;
             current = current->next;
         }
 
-        ListNode *newHead = addLoop(head, pos);
+        Node *newHead = addLoop(head, pos);
 
         return newHead;
     }
 
-    ListNode *addLoop(ListNode *head, int pos)
+    Node *addLoop(Node *head, int pos)
     {
         if (head == NULL || pos == -1)
         {
             return NULL;
         }
-        ListNode *current = head;
+        Node *current = head;
         while (current != NULL && pos > 0)
         {
             current = current->next;
             pos--;
         }
 
-        ListNode *tail = head;
+        Node *tail = head;
         while (tail->next != NULL)
         {
             tail = tail->next;
@@ -105,13 +105,13 @@ public:
         return head;
     }
 
-    void printLL(ListNode *head)
+    void printLL(Node *head)
     {
         if (head == NULL)
         {
             return;
         }
-        ListNode *current = head;
+        Node *current = head;
         while (current != NULL)
         {
             cout << current->data << " ";
@@ -134,7 +134,7 @@ int main()
     }
 
     Solution sol;
-    ListNode *head = sol.constructLL(vec, pos);
+    Node *head = sol.constructLL(vec, pos);
     // sol.printLL(head);
     bool ans = sol.hasCycle(head);
     cout << ans;
