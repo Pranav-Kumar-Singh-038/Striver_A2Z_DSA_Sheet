@@ -4,21 +4,27 @@ using namespace std;
 class Solution
 {
 public:
-    void bubbleSort(vector<int> &arr)
+    void bubbleSort(vector<int> &arr) // Compare two swap if left is greater, continue this till end, end one step early everytime as big numbers are being added to last, skip last iteration, if no swaps are made the array was already sorted so stop
     {
-        for(int i=0;i<arr.size();i++)
-        {
-            for(int j=0;j<arr.size()-1-i;j++)
-            {
-                if(arr[j]>arr[j+1])
+        // TC: O(n^2), SC: O(1)
+        int n = arr.size();
+        for (int i = 0; i < n - 1; i++)
+        { 
+            bool swapped = false;
+            for (int j = 0; j < n - 1 - i; j++)
+            { 
+                if (arr[j] > arr[j + 1])
                 {
-                    swap(arr[j],arr[j+1]);
+                    swap(arr[j], arr[j + 1]);
+                    swapped = true;
                 }
             }
+            if (!swapped)
+                break;
         }
-        for(auto it:arr)
+        for (auto it : arr)
         {
-            cout<<it<<" ";
+            cout << it << " ";
         }
     }
 

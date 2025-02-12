@@ -3,9 +3,9 @@ using namespace std;
 
 class Solution {
     public:
-      void selectionSort(vector<int> &arr) { // Find the smallest replace with 1st index, find the second smallest replace with 2nd index
+      void selectionSort(vector<int> &arr) { // Find the smallest replace with 1st index, find the second smallest replace with 2nd index, skip last step as already sorted by that point inner loop starts from i+1, use swap instead of manual swap
         // TC: O(n^2), SC: O(1)
-        for(int i=0;i<arr.size();i++)
+        for(int i=0;i<arr.size()-1;i++)
           {
             int smallest=i;
             for(int j=i+1;j<arr.size();j++)
