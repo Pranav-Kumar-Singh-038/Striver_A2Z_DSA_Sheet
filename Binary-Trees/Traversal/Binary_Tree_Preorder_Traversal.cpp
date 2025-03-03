@@ -19,32 +19,33 @@ public:
 class Solution
 {
 public:
-    vector<int> preorderTraversal(TreeNode *root) // TC: O(n), SC: O(2*n)
+    vector<int> preorderTraversal(TreeNode *root) // Iterative
     {
-        vector<int> preorder;
+        // TC: O(n), SC: O(2*n)
+        vector<int> nodes;
         stack<TreeNode *> stk;
-        while(root || !stk.empty())
+        while (root || !stk.empty())
         {
-            if(root!=NULL)
+            if (root)
             {
-                if(root->right)
+                nodes.push_back(root->val);
+                if (root->right)
                 {
                     stk.push(root->right);
                 }
-              preorder.push_back(root->val);
-              root=root->left;
+                root = root->left;
             }
             else
             {
-                root=stk.top();
+                root = stk.top();
                 stk.pop();
             }
         }
-        return preorder;
+        return nodes;
     }
-
-    vector<int> preorderTraversal1(TreeNode *root) // TC: O(n), SC: O(2*n)
+    vector<int> preorderTraversal1(TreeNode *root) // Recursive
     {
+        // TC: O(n), SC: O(2*n)
         vector<int> preorder;
         preorderTree(root, preorder);
         return preorder;
