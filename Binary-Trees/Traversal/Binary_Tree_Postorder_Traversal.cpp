@@ -18,10 +18,43 @@ public:
 class Solution
 {
 public:
-    vector<int> postorderTraversal(TreeNode *root) // Using Recursion
+    vector<int> postorderTraversal(TreeNode *root) // Using Iteration 2 stack
     {
         // TC: O(n), SC: O(2*n)
-        if(root==NULL)
+        vector<int> ans;
+        if (!root)
+        {
+            return ans;
+        }
+        stack<TreeNode *> stk1;
+        stack<TreeNode *> stk2;
+        stk1.push(root);
+        while (!stk1.empty())
+        {
+            TreeNode *current = stk1.top();
+            stk1.pop();
+            stk2.push(current);
+            if (current->left)
+            {
+                stk1.push(current->left);
+            }
+            if (current->right)
+            {
+                stk1.push(current->right);
+            }
+        }
+        while (!stk2.empty())
+        {
+            ans.push_back(stk2.top()->val);
+            stk2.pop();
+        }
+        return ans;
+    }
+
+    vector<int> postorderTraversal1(TreeNode *root) // Using Recursion
+    {
+        // TC: O(n), SC: O(2*n)
+        if (root == NULL)
         {
             return {};
         }
@@ -30,21 +63,21 @@ public:
         return ans;
     }
 
-    void postOrder(TreeNode* root, vector<int> &ans)
+    void postOrder(TreeNode *root, vector<int> &ans) // recursive function
     {
-        if(root==NULL)
+        if (root == NULL)
         {
             return;
         }
 
-        postOrder(root->left,ans);
-        postOrder(root->right,ans);
+        postOrder(root->left, ans);
+        postOrder(root->right, ans);
         ans.push_back(root->val);
     }
 
     TreeNode *createBinaryTree(vector<int> vec)
     {
-        if(vec.size()==0)
+        if (vec.size() == 0)
         {
             return NULL;
         }
