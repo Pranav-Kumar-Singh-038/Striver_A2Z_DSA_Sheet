@@ -18,29 +18,21 @@ public:
 class Solution
 {
 public:
-    int diameter = 0;
-    int diameterOfBinaryTree(TreeNode *root) // Using max Depth, also calculate the diameter of every node while calculating
-    // The left and right depth, this will prevent calling every node for diameter as it is done in single traversal.
+    int countNodes(TreeNode *root)
     {
-        // TC: O(n), SC: O(n)
-        if (root == NULL)
+        if(root==NULL)
         {
             return 0;
         }
-        maxDepth(root);
-        return diameter;
     }
 
-    int maxDepth(TreeNode *root)
+    int maxDepth(TreeNode *node)
     {
-        if (root == NULL)
+        if(node==NULL)
         {
             return 0;
         }
-        int leftDepth = maxDepth(root->left);
-        int rightDepth = maxDepth(root->right);
-        diameter = max(diameter, leftDepth + rightDepth);
-        return 1 + max(leftDepth, rightDepth);
+
     }
 
     TreeNode *createBinaryTree(const vector<optional<int>> &vec)
@@ -77,7 +69,6 @@ public:
 
         return root;
     }
-    
 };
 
 int main()
@@ -87,20 +78,19 @@ int main()
     vector<optional<int>> vec(n);
     for (int i = 0; i < n; i++)
     {
-        string value;
-        cin >> value;
-
-        if (value == "NULL")
+        string x;
+        cin >> x;
+        if (x == "null")
         {
             vec[i] = nullopt;
         }
         else
         {
-            vec[i] = stoi(value);
+            vec[i] = stoi(x);
         }
     }
     Solution sol;
     TreeNode *root = sol.createBinaryTree(vec);
-    int ans = sol.diameterOfBinaryTree(root);
+    bool ans = sol.countNodes(root);
     cout << ans;
 }

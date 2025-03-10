@@ -21,23 +21,23 @@ public:
     bool isBalanced(TreeNode *root) // using maximum depth, only when we get the diff to be -1 we return -1 which cascades into -1 as the final answer, else we return depth 
     {
         // TC: O(n), SC: O(n)
-        return maxDiameter(root) != -1;
+        return maxDepth(root) != -1;
     }
 
-    int maxDiameter(TreeNode *root)
+    int maxDepth(TreeNode *root)
     {
         if (root == NULL)
         {
             return 0;
         }
 
-        int leftDepth = maxDiameter(root->left);
+        int leftDepth = maxDepth(root->left);
         if (leftDepth == -1)
         {
             return -1;
         }
 
-        int rightDepth = maxDiameter(root->right);
+        int rightDepth = maxDepth(root->right);
         if (rightDepth == -1)
         {
             return -1;

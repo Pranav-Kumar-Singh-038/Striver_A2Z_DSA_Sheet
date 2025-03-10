@@ -18,14 +18,14 @@ public:
 class Solution
 {
 public:
-    int maxDiameter(TreeNode *root) // recursive DFS
+    int maxDepth(TreeNode *root) // recursive DFS
     {
         // TC: O(n), SC: O(n) (skewed)
         if(root==NULL)
         {
             return 0;
         }
-        return 1+max(maxDiameter(root->left),maxDiameter(root->right));
+        return 1+max(maxDepth(root->left),maxDepth(root->right));
     }
 
     int maxDepth1(TreeNode *root) // Iterative BFS
@@ -103,8 +103,9 @@ int main()
     }
     Solution sol;
     TreeNode *root = sol.createBinaryTree(vec);
-    int ans = sol.maxDiameter(root);
+    int ans = sol.maxDepth(root);
     cout << ans;
 }
+
 
 
