@@ -18,36 +18,36 @@ public:
 class Solution
 {
 public:
-    vector<int> preorderTraversal(TreeNode *root) //Morris Preorder Traversal algorithm traverses the tree using threaded binary tree links to avoid extra space, visiting each node twice—first to process it and create a temporary thread, and second to remove the thread and move right.
+    vector<int> inorderTraversal(TreeNode *root) //Morris Inorder Traversal algorithm traverses the tree using threaded binary tree links to avoid extra space, visiting each node twice—first to process it and create a temporary thread, and second to remove the thread and move right. Only difference from preorder is that we first move to the left most then push, and when we find thread created before hand that means that left side is explored so we push the root.
     {
         // TC: O(2n), SC: O(1)
-        TreeNode* curr=root;
         vector<int> ans;
-        while(curr!=NULL)
+        TreeNode *current = root;
+        while (current != NULL)
         {
-            if(curr->left)
+            if (current->left)
             {
-                TreeNode* prev=curr->left;
-                while(prev->right && prev->right!=curr)
+                TreeNode *prev = current->left;
+                while (prev->right && prev->right != current)
                 {
-                    prev=prev->right;
+                    prev = prev->right;
                 }
-                if(prev->right==NULL)
+                if (prev->right == NULL)
                 {
-                    prev->right=curr;
-                    ans.push_back(curr->val);
-                    curr=curr->left;
+                    prev->right = current;
+                    current = current->left;
                 }
                 else
                 {
-                    prev->right=NULL;
-                    curr=curr->right;
+                    prev->right = NULL;
+                    ans.push_back(current->val);
+                    current = current->right;
                 }
             }
             else
             {
-                ans.push_back(curr->val);
-                curr=curr->right;
+                ans.push_back(current->val);
+                current = current->right;
             }
         }
         return ans;
@@ -87,7 +87,6 @@ public:
 
         return root;
     }
-
 };
 
 int main()
@@ -111,7 +110,7 @@ int main()
     }
     Solution sol;
     TreeNode *root = sol.createBinaryTree(vec);
-    vector<int> ans = sol.preorderTraversal(root);
+    vector<int> ans = sol.inorderTraversal(root);
     for (auto &it : ans)
     {
         cout << it << " ";
