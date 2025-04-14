@@ -6,7 +6,7 @@ using namespace std;
 //SC O(1)
 class Solution {
 public:
-    vector<int> majorityElement(vector<int>& nums) 
+    vector<int> majorityElement(vector<int>& nums)  // there can only be two such numbers, the first pass is used to find the potential candidates (two numbers which have the maximum freqs), then we count their freqs to verfy it then push
     {
         int num1 = INT_MIN, num2 = INT_MIN;
         int count1 = 0, count2 = 0;
@@ -30,6 +30,7 @@ public:
                 count2--;
             }
         }////
+      
       int countfin2=0;
       int countfin1=0;
       for(auto it:nums)
