@@ -1,60 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-    vector<int> getFloorAndCeil(int x, vector<int> &arr) // find floor and ciel using diff
-    {
-        // TC: O(n), SC :O(1)
-        vector<int> ans(2);
-        int currDiff, maxDiff = INT_MAX, minDiff = INT_MIN;
-        for (int &it : arr)
-        {
-            currDiff = x - it;
-            if (currDiff > 0)
-            {
-                maxDiff = min(currDiff, maxDiff);
-            }
-            else if (currDiff < 0)
-            {
-                minDiff = max(currDiff, minDiff);
-            }
-            else
-            {
-                return {x, x};
-            }
-        }
-        ans[0] = x - maxDiff;
-        ans[1] = x - minDiff;
-        if (maxDiff == INT_MAX)
-        {
-            ans[0] = -1;
-        }
-        if (minDiff == INT_MIN)
-        {
-            ans[1] = -1;
-        }
-        return ans;
-    }
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+    int floor = -1, ceil = -1;
+    int l = 0, r = n - 1;
 
-};
+    while (l <= r) {
+        int mid = l + (r - l) / 2;
+        if (a[mid] == x) {
+            return {x, x};
+        }
+        else if (a[mid] < x) {
+            floor = a[mid];
+            l = mid + 1;
+        } else {
+            ceil = a[mid];
+            r = mid - 1;
+        }
+    }
+    return {floor, ceil};
+}
+
 
 int main()
 {
-    int n, x;
-    cin >> n >> x;
-    vector<int> vec(n);
-    for (int &it : vec)
-    {
-        cin >> it;
-    }
+  int n,k;
+  cin>>n>>k;
+  
+  vector<int> nums(n);
+  for(int &element:nums)
+  {
+    cin>>element;
+  }
 
-    Solution sol;
-    vector<int> ans = sol.getFloorAndCeil(x, vec);
-    for (int &x : ans)
-    {
-        cout << x << " ";
-    }
-    return 0;
+  pair<int,int> ans=getFloorAndCeil(nums,n,k);
+  cout<<ans.first<<" "<<ans.second;
+  return 0;
 }
