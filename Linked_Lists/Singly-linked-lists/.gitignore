@@ -11,8 +11,3 @@
 
 # Ignore build directories
 /build/
-
-# without extensions
-*
-!*.*
-
