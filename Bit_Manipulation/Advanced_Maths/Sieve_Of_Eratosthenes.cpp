@@ -6,11 +6,12 @@ class Solution
 public:
     int countPrimes(int n) // make a  boolean array of size n+1, then assume all to be true i.e prime, then make 0 and 1 not prime, start a loop from 2 till root n, for each number from 2, mark its multiple after 2*2 i.e i*i as false,as they are multiples, upto n, the remaining number are primes, count or print them
     {
-        // TC: O(√n+nloglogn + n) + SC:O(n)
+        // TC: O(nloglogn + n) + SC:O(n)
         vector<bool> isPrime(n + 1, true); // SC: O(n)
         isPrime[0] = false;
         isPrime[1] = false;
-        for (int i = 2; i * i <= n; i++) // TC: O(√n) iterations
+        
+        for (int i = 2; i * i <= n; i++) 
         {
             if (isPrime[i] == true)
             {
