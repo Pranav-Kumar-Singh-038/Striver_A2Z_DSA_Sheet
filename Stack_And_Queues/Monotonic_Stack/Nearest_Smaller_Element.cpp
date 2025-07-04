@@ -8,6 +8,7 @@ vector<int> prevSmaller(vector<int> &A);
 };
 
 vector<int> Solution::prevSmaller(vector<int> &A) { // do not use unordered_map as it can have duplicate value
+
     // TC: O(2n) SC:O(2n)
   stack<int> stk;
   vector<int> ans(A.size());
